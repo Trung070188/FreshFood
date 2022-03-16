@@ -26,6 +26,7 @@ Route::get('/danh-muc-san-pham/{category_slug}','App\Http\Controllers\CategoryPr
 Route::get('/thuong-hieu-san-pham/{brand_slug}','App\Http\Controllers\BrandProduct@show_brand_home');
 //chi tiết sản phẩm
 Route::get('/chi-tiet-san-pham/{product_slug}','App\Http\Controllers\Product@chi_tiet');
+Route::get('/send-mail','App\Http\Controllers\HomeController@send_mail');
 //cart
 Route::post('/update-cart','App\Http\Controllers\CartController@update_cart');
 Route::get('/delete-cart/{session_id}','App\Http\Controllers\CartController@delete_cart');
@@ -145,15 +146,17 @@ Route::post('/export-brand','App\Http\Controllers\BrandProduct@export_brand');
 Route::post('/import-brand','App\Http\Controllers\BrandProduct@import_brand');
 
 //Product
+Route::group(['middleware'=>'auth.roles'],function(){
+    Route::get('/add-product','App\Http\Controllers\Product@add_product');
+    Route::get('/edit-product/{product_id}','App\Http\Controllers\Product@edit_product');
+    Route::get('/delete-product/{product_id}','App\Http\Controllers\Product@delete_product');
+    Route::post('/update-product/{product_id}','App\Http\Controllers\Product@update_product');
 
-Route::get('/add-product','App\Http\Controllers\Product@add_product');
+} );
 Route::get('/all-product','App\Http\Controllers\Product@all_product');
-Route::get('/edit-product/{product_id}','App\Http\Controllers\Product@edit_product');
-Route::get('/delete-product/{product_id}','App\Http\Controllers\Product@delete_product');
 Route::get('/unactive-product/{product_id}','App\Http\Controllers\Product@unactive_product');
 Route::get('/active-product/{product_id}','App\Http\Controllers\Product@active_product');
 Route::post('/save-product','App\Http\Controllers\Product@save_product');
-Route::post('/update-product/{product_id}','App\Http\Controllers\Product@update_product');
 
 //coupon
 
@@ -196,9 +199,13 @@ Route::post('/register','App\Http\Controllers\AuthController@register');
 Route::post('/login','App\Http\Controllers\AuthController@login');
 //user
 
-Route::get('/all-user','App\Http\Controllers\UserController@all_user');
+Route::get('/all-user','App\Http\Controllers\UserController@all_user')->middleware('auth.roles');
 Route::get('/delete-user-roles/{admin_id}','App\Http\Controllers\UserController@delete_user_roles');
-Route::post('/assign-roles','App\Http\Controllers\UserController@assign_roles');
+Route::post('/assign-roles','App\Http\Controllers\UserController@assign_roles')->middleware('auth.roles');
+Route::get('/store','App\Http\Controllers\UserController@store');
+Route::post('/save_store','App\Http\Controllers\UserController@save_store');
+
+
 
 //slider
 Route::get('/add-slider','App\Http\Controllers\SliderController@add_slider');

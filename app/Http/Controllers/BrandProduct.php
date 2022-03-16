@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
+use Illuminate\Support\Facades\DB;
 use App\Imports\ExcelImportsBrand;
 use App\Exports\ExcelExportsBrand;
 use App\Http\Requests\AddBrandRequests;
 use App\Http\Requests\ExcelRequests;
 use App\Http\Requests;
-use Session;
-use Auth;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
 use Excel;
 use Illuminate\support\Facades\Redirect;
 session_start();

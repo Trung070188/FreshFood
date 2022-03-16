@@ -110,6 +110,6 @@
 
 <!--js phân trang tìm kiếm-->
 
-{{-- <script src="{{asset('public/backend/js/jquery.min.js')}}"></script> 
-<script src="{{asset('public/backend/js/matrix.tables.js')}}"></script> --}}
+{{-- <script src="{{asset('backend/js/jquery.min.js')}}"></script> 
+<script src="{{asset('backend/js/matrix.tables.js')}}"></script> --}}
 @endsection

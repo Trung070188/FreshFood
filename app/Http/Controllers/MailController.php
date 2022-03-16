@@ -1,12 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-use Mail;
+use Illuminate\Support\Facades\Mail;
 use Carbon\Carbon;
 use App\Models\Coupon;
 use App\Models\Customer;
 use Illuminate\Http\Request;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 class MailController extends Controller
 {
     public function AuthenLogin(){

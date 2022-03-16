@@ -68,7 +68,7 @@
           <div class="col-sm-7">
             <div class="fileinput fileinput-new text-center" data-provides="fileinput">
               <div class="fileinput-new thumbnail">
-                <img src="{{URL::to('public/upload/post/'.$edit->post_image)}}" alt="...">
+                <img src="{{URL::to('upload/post/'.$edit->post_image)}}" alt="...">
               </div>
               <div class="fileinput-preview fileinput-exists thumbnail"></div>
               <div>

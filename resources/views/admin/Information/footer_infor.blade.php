@@ -59,7 +59,7 @@
           <div class="col-sm-7">
             <div class="fileinput fileinput-new text-center" data-provides="fileinput">
               <div class="fileinput-new thumbnail">
-                <img src="{{asset('public/backend/assets/img/image_placeholder.jpg')}}" alt="...">
+                <img src="{{asset('backend/assets/img/image_placeholder.jpg')}}" alt="...">
               </div>
               <div class="fileinput-preview fileinput-exists thumbnail"></div>
               <div>

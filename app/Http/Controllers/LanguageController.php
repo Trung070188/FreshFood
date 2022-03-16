@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\App;
 use Illuminate\Http\Request;
 
-use Session;
+use Illuminate\Support\Facades\Session;
 
 class LanguageController extends Controller
 {

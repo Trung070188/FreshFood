@@ -38,7 +38,7 @@
                     <td>{!!$c->info_contact!!}</td>
                     <td style="height: 5%;width: 5%;">{!!$c->info_map!!}</td>
                     <td>{!!$c->info_fanpage!!}</td>
-                    <td><img src="{{asset('upload/contact/'.$c->info_logo)}}" height="100" width="100" ></td>
+                    <td><img src="{{asset('public/upload/contact/'.$c->info_logo)}}" height="100" width="100" ></td>
                     <td class="td-actions text-right">
                       <button type="button" rel="tooltip" class="btn btn-success">
                         <a class="material-icons" href="{{URL::to('/edit-footer/'.$c->info_id)}}" data-original-title="Update">edit</a>

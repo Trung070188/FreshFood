@@ -41,6 +41,7 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             //language
             \App\Http\Middleware\Language::class,
+
         ],
 
         'api' => [

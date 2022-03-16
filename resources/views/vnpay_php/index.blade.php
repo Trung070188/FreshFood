@@ -9,10 +9,10 @@
         <meta name="author" content="">
         <title>VNPAY ONLINE</title>
         <!-- Bootstrap core CSS -->
-        <link href="{{asset('public/frontend/assets/bootstrap.min.css')}}" rel="stylesheet"/>
+        <link href="{{asset('frontend/assets/bootstrap.min.css')}}" rel="stylesheet"/>
         <!-- Custom styles for this template -->
-        <link href="{{asset('public/frontend/assets/jumbotron-narrow.css')}}" rel="stylesheet">  
-{{--         <script src="{{asset('public/frontend/assets/jquery-1.11.3.min.js')}}"></script> --}}
+        <link href="{{asset('frontend/assets/jumbotron-narrow.css')}}" rel="stylesheet">  
+{{--         <script src="{{asset('frontend/assets/jquery-1.11.3.min.js')}}"></script> --}}
     </head>
 
     <body>
@@ -122,7 +122,7 @@
                 &nbsp;
             </p>
             <footer class="footer">
-                {{-- <p>&copy; VNPAY 2015</p> --}}
+                {{-- <p>&copy; VNPAY 2022</p> --}}
             </footer>
         </div>  
         <link href="https://sandbox.vnpayment.vn/paymentv2/lib/vnpay/vnpay.css" rel="stylesheet"/>

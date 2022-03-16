@@ -23,19 +23,19 @@ class UserTableSeeder extends Seeder
 
         $admin = Login::create([
         	'admin_name' => 'test1',
-        	'admin_email' => 'test@gmail.com',
+        	'admin_email' => 'test1@gmail.com',
         	'admin_phone' => '123456',
         	'admin_password' => md5('123456')
         ]);
         $author = Login::create([
         	'admin_name' => 'test2',
-        	'admin_email' => 'test@gmail.com',
+        	'admin_email' => 'test2@gmail.com',
         	'admin_phone' => '123456',
         	'admin_password' => md5('123456')
         ]);
          $user = Login::create([
         	'admin_name' => 'test3',
-        	'admin_email' => 'test@gmail.com',
+        	'admin_email' => 'test3@gmail.com',
         	'admin_phone' => '123456',
         	'admin_password' => md5('123456')
         ]);

@@ -9,8 +9,8 @@ class Coupon extends Model
 {
     public $timestamps = false; //set time to false
     protected $fillable = [
-    	'coupon_name','coupon_code','coupon_qty','coupon_number', 'coupon_condition','coupon_date_start','coupon_date_end','coupon_status',
+        'coupon_name', 'coupon_code', 'coupon_qty', 'coupon_number', 'coupon_condition', 'coupon_date_start', 'coupon_date_end', 'coupon_status',
     ];
     protected $primaryKey = 'coupon_id';
- 	protected $table = 'tbl_coupon';
+    protected $table = 'tbl_coupon';
 }

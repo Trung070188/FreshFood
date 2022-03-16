@@ -60,6 +60,7 @@
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top text-white">
     <div class="container">
+   
       <div class="navbar-wrapper">
         <a class="navbar-brand" >Login Fresh Fruit</a>
       </div>
@@ -71,12 +72,12 @@
       </button>
       <div class="collapse navbar-collapse justify-content-end">
         <ul class="navbar-nav">
-          {{-- <li class="nav-item ">
+         <li class="nav-item ">
             <a href="{{URL::to('/register-auth')}}" class="nav-link">
               <i class="material-icons">person_add</i> Register Auth
             </a>
-          </li> --}}
-          <li class="nav-item  active ">
+          </li>
+          <li class="nav-item   ">
             <a href="{{URL::to('/admin')}}" class="nav-link">
               <i class="material-icons">fingerprint</i> Login Auth
             </a>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use DB;
 use App\Http\Requests;
 use Session;
+use Illuminate\Support\Facades\Mail;
 use App\Models\Category;
 use App\Models\Products;
 use App\Models\Brand;
@@ -16,6 +17,20 @@ session_start();
 
 class HomeController extends Controller
 {
+  public function send_mail()
+  {
+    $to_name = "quang trung";
+    $to_email = "quangtrung01654748714@gmail.com";//send to this email
+
+    $data = array("name"=>"noi dung ten","body"=>'noi dung body'); //body of mail.blade.php
+
+    Mail::send('pages.email.send_mail',$data,function($message) use ($to_name,$to_email){
+        $message->to($to_email)->subject('test mail ');//send this mail with subject
+        $message->from($to_email,$to_name);//send from this mail
+    });
+
+  }
+
     public function index(Request $request){ 
       //seo 
         $meta_desc = "Chuyên bán trái cây dinh dưỡng cao, hoàn toàn tự nhiên không sử dụng các loại hóa chất"; 

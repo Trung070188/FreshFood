@@ -7,12 +7,12 @@ use App\Exports\ExcelExportsCateBlog;
 use App\Http\Requests\CategoryPostRequests;
 use App\Http\Requests\ExcelRequests;
 use Excel;
-use DB;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests;
-use Session;
+use Illuminate\Support\Facades\Session;
 use Illuminate\support\Facades\Redirect;
 use App\Models\Cateblog;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 session_start();
 
 class CategoryBlog extends Controller

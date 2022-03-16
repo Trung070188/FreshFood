@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Login;
 use App\Models\Roles;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 class AuthController extends Controller
 {
     public function register_auth(){

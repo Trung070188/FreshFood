@@ -38,7 +38,7 @@
                   @foreach($all_post as $key => $post)
                   <tr>
                     <td>{{$post->post_title}}</td>
-                    <td><img src="{{asset('public/upload/post/'.$post->post_image)}}" height="100" width="100" ></td>
+                    <td><img src="{{asset('upload/post/'.$post->post_image)}}" height="100" width="100" ></td>
                     <td>{{$post->post_slug}}</td>
                     <td>{{$post->post_desc}}</td>
                     <td>{{$post->post_keywords}}</td>

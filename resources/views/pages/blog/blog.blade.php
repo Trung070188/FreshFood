@@ -1,7 +1,7 @@
 @extends('layout')
 @section('content')
      <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-section set-bg owl-carousel owl-loaded owl-drag" style="margin-left: 100px;width: 1150px;height: 150px;" data-setbg="{{URL::to('public/frontend/image/breadcrumb.jpg')}}">
+    <section class="breadcrumb-section set-bg owl-carousel owl-loaded owl-drag" style="margin-left: 100px;width: 1150px;height: 150px;" data-setbg="{{URL::to('frontend/image/breadcrumb.jpg')}}">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -40,7 +40,7 @@
                                 @foreach($post_new as $key =>$new)
                                 <a href="{{URL::to('/bai-viet/'.$new->post_slug)}}" class="blog__sidebar__recent__item">
                                     <div class="blog__sidebar__recent__item__pic">
-                                        <img height="70" width="70" src="{{asset('public/upload/post/'.$new->post_image)}}" alt="{{$new->post_slug}}">
+                                        <img height="70" width="70" src="{{asset('upload/post/'.$new->post_image)}}" alt="{{$new->post_slug}}">
                                     </div>
                                     <div class="blog__sidebar__recent__item__text">
                                         <h6>{{$new->post_title}}</h6>
@@ -57,7 +57,7 @@
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="blog__item">
                                 <div class="blog__item__pic">
-                                    <img src="{{asset('public/upload/post/'.$p->post_image)}}" width="360" height="258" alt="{{$p->post_slug}}">
+                                    <img src="{{asset('upload/post/'.$p->post_image)}}" width="360" height="258" alt="{{$p->post_slug}}">
                                 </div>
                                 <div class="blog__item__text">
                                     <h5><a href="{{URL::to('/bai-viet/'.$p->post_slug)}}">{{$p->post_title}}</a></h5>

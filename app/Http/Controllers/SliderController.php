@@ -6,11 +6,11 @@ use App\Http\Requests\AdsRequests;
 use Illuminate\Http\Request;
 use App\Models\Slider;
 use App\Models\Ads;
-use Session;
+use Illuminate\Support\Facades\Session;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
-use DB;
-use Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 class SliderController extends Controller
 {
    public function AuthenLogin(){

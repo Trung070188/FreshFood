@@ -454,7 +454,7 @@
 
                 if (parseInt(cart_product_qty)>parseInt(cart_product_quantity)){
                     if (parseInt(cart_product_quantity)==0) {
-                        swal("{{__('Vui lòng liên hệ SĐT: 0564811836 để đặt hàng!')}}");
+                        swal("{{__('Vui lòng liên hệ SĐT: 0369497573 để đặt hàng!')}}");
                     } else{
                         swal("{{__('Vui Lòng Nhập Số Lượng Nhỏ Hơn')}} "+cart_product_quantity,"", "warning");
                     }

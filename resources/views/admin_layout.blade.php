@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+
 <head>
   <meta charset="utf-8" />
   <link rel="apple-touch-icon" sizes="76x76" href="{{asset('backend/assets/img/icon.png')}}">
@@ -15,7 +16,7 @@
   <!-- CSS Files -->
   <link href="{{asset('backend/assets/css/material-dashboard.minf066.css?v=2.1.0')}}" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
-  <link href="{{asset('backend/assets/demo/demo.css')}}" rel="stylesheet" />  
+  <link href="{{asset('backend/assets/demo/demo.css')}}" rel="stylesheet" />
   <link rel="stylesheet" href="{{asset('backend/assets/css/bootstrap-wysihtml5.css')}}" />
   {{-- datepicker --}}
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -26,7 +27,7 @@
 </head>
 
 <body class="">
-  <!-- Extra details for Live View on GitHub Pages --> 
+  <!-- Extra details for Live View on GitHub Pages -->
   <div class="wrapper ">
     <div class="sidebar" data-color="rose" data-background-color="black" data-image="{{asset('backend/assets/img/sidebar-1.jpg')}}">
       <!--
@@ -41,7 +42,7 @@
         <a href="{{URL::to('/dashboard')}}" class="simple-text logo-normal">
           Fresh Fruit <img src="{{asset('backend/assets/img/icon.png')}}" sizes="70x70">
         </a>
-        
+
       </div>
       <div class="sidebar-wrapper">
         <div class="user">
@@ -52,8 +53,10 @@
             <a data-toggle="collapse" href="#collapseExample" class="username">
               <span>{{__('Xin Chào')}}
                 <?php
+
+
                 $name = Auth::user()->admin_name;
-                if($name){
+                if ($name) {
                   echo $name;
                 }
                 ?>
@@ -115,7 +118,9 @@
                 </li>
               </ul>
             </div>
+
           </li>
+
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#product">
               <i class="material-icons">production_quantity_limits</i>
@@ -308,6 +313,33 @@
               </ul>
             </div>
           </li>
+            
+          @hasrole(['admin','author'])
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#user">
+              <i class="material-icons">ads_click</i>
+              <p> {{__('Nhân Viên')}}
+                <b class="caret"></b>
+              </p>
+            </a>
+            <div class="collapse" id="user">
+              <ul class="nav">
+                <li class="nav-item ">
+                  <a class="nav-link" href="{{URL::to('/store')}}">
+                    <span class="sidebar-mini"> SP </span>
+                    <span class="sidebar-normal"> {{__('Thêm Nhân Viên')}} </span>
+                  </a>
+                </li>
+                <li class="nav-item ">
+                  <a class="nav-link" href="{{URL::to('/all-user')}}">
+                    <span class="sidebar-mini"> SP </span>
+                    <span class="sidebar-normal"> {{__('Liệt Kê Nhân Viên')}} </span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          @endhasrole
         </ul>
       </div>
     </div>
@@ -375,8 +407,8 @@
       </nav>
       <!-- End Navbar -->
       <div class="content">
-        <div class="content">  
-          @yield('admin_content')        
+        <div class="content">
+          @yield('admin_content')
           <footer class="footer">
             <div class="container-fluid">
               <div class="copyright float-right">
@@ -384,7 +416,7 @@
                 <script>
                   document.write(new Date().getFullYear())
                 </script>, made with <i class="material-icons">favorite</i> by
-                <a href="#" target="_blank">Quang</a>.
+                <a href="#" target="_blank">Trung</a>.
               </div>
             </div>
           </footer>
@@ -524,11 +556,10 @@
       {{-- Link Validation JS --}}
       <script src="{{asset('backend/assets/js/formValidation.min.js')}}"></script>
       <script type="text/javascript">
-        $.validate({
-        });
+        $.validate({});
       </script>
       {{-- CKEditor 4 --}}
-      <script src="{{asset('backend/ckeditor/ckeditor.js')}}"></script> 
+      <script src="{{asset('backend/ckeditor/ckeditor.js')}}"></script>
       <script>
         CKEDITOR.replace('ckeditor1');
         CKEDITOR.replace('ckeditor2');
@@ -543,102 +574,112 @@
       {{-- end morris --}}
       {{-- slug --}}
       <script type="text/javascript">
-          function ChangeToSlug()
-              {
-                  var slug;
-                  //Lấy text từ thẻ input title 
-                  slug = document.getElementById("slug").value;
-                  slug = slug.toLowerCase();
-                  //Đổi ký tự có dấu thành không dấu
-                      slug = slug.replace(/á|à|ả|ạ|ã|ă|ắ|ằ|ẳ|ẵ|ặ|â|ấ|ầ|ẩ|ẫ|ậ/gi, 'a');
-                      slug = slug.replace(/é|è|ẻ|ẽ|ẹ|ê|ế|ề|ể|ễ|ệ/gi, 'e');
-                      slug = slug.replace(/i|í|ì|ỉ|ĩ|ị/gi, 'i');
-                      slug = slug.replace(/ó|ò|ỏ|õ|ọ|ô|ố|ồ|ổ|ỗ|ộ|ơ|ớ|ờ|ở|ỡ|ợ/gi, 'o');
-                      slug = slug.replace(/ú|ù|ủ|ũ|ụ|ư|ứ|ừ|ử|ữ|ự/gi, 'u');
-                      slug = slug.replace(/ý|ỳ|ỷ|ỹ|ỵ/gi, 'y');
-                      slug = slug.replace(/đ/gi, 'd');
-                      //Xóa các ký tự đặt biệt
-                      slug = slug.replace(/\`|\~|\!|\@|\#|\||\$|\%|\^|\&|\*|\(|\)|\+|\=|\,|\.|\/|\?|\>|\<|\'|\"|\:|\;|_/gi, '');
-                      //Đổi khoảng trắng thành ký tự gạch ngang
-                      slug = slug.replace(/ /gi, "-");
-                      //Đổi nhiều ký tự gạch ngang liên tiếp thành 1 ký tự gạch ngang
-                      //Phòng trường hợp người nhập vào quá nhiều ký tự trắng
-                      slug = slug.replace(/\-\-\-\-\-/gi, '-');
-                      slug = slug.replace(/\-\-\-\-/gi, '-');
-                      slug = slug.replace(/\-\-\-/gi, '-');
-                      slug = slug.replace(/\-\-/gi, '-');
-                      //Xóa các ký tự gạch ngang ở đầu và cuối
-                      slug = '@' + slug + '@';
-                      slug = slug.replace(/\@\-|\-\@|\@/gi, '');
-                      //In slug ra textbox có id “slug”
-                  document.getElementById('convert_slug').value = slug;
-              }
+        function ChangeToSlug() {
+          var slug;
+          //Lấy text từ thẻ input title 
+          slug = document.getElementById("slug").value;
+          slug = slug.toLowerCase();
+          //Đổi ký tự có dấu thành không dấu
+          slug = slug.replace(/á|à|ả|ạ|ã|ă|ắ|ằ|ẳ|ẵ|ặ|â|ấ|ầ|ẩ|ẫ|ậ/gi, 'a');
+          slug = slug.replace(/é|è|ẻ|ẽ|ẹ|ê|ế|ề|ể|ễ|ệ/gi, 'e');
+          slug = slug.replace(/i|í|ì|ỉ|ĩ|ị/gi, 'i');
+          slug = slug.replace(/ó|ò|ỏ|õ|ọ|ô|ố|ồ|ổ|ỗ|ộ|ơ|ớ|ờ|ở|ỡ|ợ/gi, 'o');
+          slug = slug.replace(/ú|ù|ủ|ũ|ụ|ư|ứ|ừ|ử|ữ|ự/gi, 'u');
+          slug = slug.replace(/ý|ỳ|ỷ|ỹ|ỵ/gi, 'y');
+          slug = slug.replace(/đ/gi, 'd');
+          //Xóa các ký tự đặt biệt
+          slug = slug.replace(/\`|\~|\!|\@|\#|\||\$|\%|\^|\&|\*|\(|\)|\+|\=|\,|\.|\/|\?|\>|\<|\'|\"|\:|\;|_/gi, '');
+          //Đổi khoảng trắng thành ký tự gạch ngang
+          slug = slug.replace(/ /gi, "-");
+          //Đổi nhiều ký tự gạch ngang liên tiếp thành 1 ký tự gạch ngang
+          //Phòng trường hợp người nhập vào quá nhiều ký tự trắng
+          slug = slug.replace(/\-\-\-\-\-/gi, '-');
+          slug = slug.replace(/\-\-\-\-/gi, '-');
+          slug = slug.replace(/\-\-\-/gi, '-');
+          slug = slug.replace(/\-\-/gi, '-');
+          //Xóa các ký tự gạch ngang ở đầu và cuối
+          slug = '@' + slug + '@';
+          slug = slug.replace(/\@\-|\-\@|\@/gi, '');
+          //In slug ra textbox có id “slug”
+          document.getElementById('convert_slug').value = slug;
+        }
       </script>
       {{-- end slug --}}
       {{-- update qty order --}}
       <script type="text/javascript">
-        $('.update_qty_order').click(function(){
-            var order_product_id = $(this).data('product_id');
-            var order_qty = $('.order_qty_'+order_product_id).val();
-            var order_code = $('.order_code').val();
-             var _token = $('input[name="_token"]').val();
-            $.ajax({
-                url : '{{url('/update-qty')}}',
-                method: 'POST',
-                data:{_token:_token,order_product_id:order_product_id,order_qty:order_qty,order_code:order_code},
-                success:function(data){
-                   alert('Cap nhap thanh cong')
-                   location.reload();
-                       
-                }
-            });
+        $('.update_qty_order').click(function() {
+          var order_product_id = $(this).data('product_id');
+          var order_qty = $('.order_qty_' + order_product_id).val();
+          var order_code = $('.order_code').val();
+          var _token = $('input[name="_token"]').val();
+          $.ajax({
+            url: '{{url(' / update - qty ')}}',
+            method: 'POST',
+            data: {
+              _token: _token,
+              order_product_id: order_product_id,
+              order_qty: order_qty,
+              order_code: order_code
+            },
+            success: function(data) {
+              alert('Cap nhap thanh cong')
+              location.reload();
+
+            }
+          });
         });
       </script>
       {{--end update qty order --}}
       {{-- xu li don hang --}}
       <script type="text/javascript">
-        $('.order_details').change(function(){
-            var order_status = $(this).val();
-            var order_id = $(this).children(":selected").attr("id");
-            var _token = $('input[name="_token"]').val();
-            //lay ra so luong
-            qty = [];
-            $("input[name='product_qty']").each(function(){
-                qty.push($(this).val());
+        $('.order_details').change(function() {
+          var order_status = $(this).val();
+          var order_id = $(this).children(":selected").attr("id");
+          var _token = $('input[name="_token"]').val();
+          //lay ra so luong
+          qty = [];
+          $("input[name='product_qty']").each(function() {
+            qty.push($(this).val());
 
-            });
-            //lay ra product id
-            order_product_id= [];
-            $("input[name='order_product_id']").each(function(){
-                order_product_id.push($(this).val());
+          });
+          //lay ra product id
+          order_product_id = [];
+          $("input[name='order_product_id']").each(function() {
+            order_product_id.push($(this).val());
 
-            });
-            j=0;
-            for ( i = 0; i<order_product_id.length;i++) {
-              //so luong khach dat
-              var order_qty = $('.order_qty_'+order_product_id[i]).val();
-              //so luong ton kho
-              var order_qty_storage = $('.order_qty_storage_'+order_product_id[i]).val();
-              if (parseInt(order_qty) > parseInt(order_qty_storage) ) {
-                j = j+1;
-                if (j==1) {
-                  alert('Số lượng sản phẩm trong kho không đủ !');
-                }
-                
-                $('.color_qty_'+order_product_id[i]).css('background-color','#ec407a');
+          });
+          j = 0;
+          for (i = 0; i < order_product_id.length; i++) {
+            //so luong khach dat
+            var order_qty = $('.order_qty_' + order_product_id[i]).val();
+            //so luong ton kho
+            var order_qty_storage = $('.order_qty_storage_' + order_product_id[i]).val();
+            if (parseInt(order_qty) > parseInt(order_qty_storage)) {
+              j = j + 1;
+              if (j == 1) {
+                alert('Số lượng sản phẩm trong kho không đủ !');
               }
+
+              $('.color_qty_' + order_product_id[i]).css('background-color', '#ec407a');
             }
-            if (j==0) {
-              $.ajax({
-                url : '{{url('/order-update-qty')}}',
-                method: 'POST',
-                data:{_token:_token,order_status:order_status,order_id:order_id,order_product_id:order_product_id,qty:qty},
-                success:function(data){
-                 alert('Thay Đổi Trạng Thái Đơn Hàng Thành Công');
-                 location.reload();
-               }
-             });
-            }
+          }
+          if (j == 0) {
+            $.ajax({
+              url: '{{url('/ order -update - qty')}}',
+              method: 'POST',
+              data: {
+                _token: _token,
+                order_status: order_status,
+                order_id: order_id,
+                order_product_id: order_product_id,
+                qty: qty
+              },
+              success: function(data) {
+                alert('Thay Đổi Trạng Thái Đơn Hàng Thành Công');
+                location.reload();
+              }
+            });
+          }
         });
       </script>
       {{-- end xu li don hang --}}
@@ -665,15 +706,15 @@
             }
 
             $('.fixed-plugin a').click(function(event) {
-                      // Alex if we click on switch, stop propagation of the event, so the dropdown will not be hide, otherwise we set the  section active
-                      if ($(this).hasClass('switch-trigger')) {
-                        if (event.stopPropagation) {
-                          event.stopPropagation();
-                        } else if (window.event) {
-                          window.event.cancelBubble = true;
-                        }
-                      }
-                    });
+              // Alex if we click on switch, stop propagation of the event, so the dropdown will not be hide, otherwise we set the  section active
+              if ($(this).hasClass('switch-trigger')) {
+                if (event.stopPropagation) {
+                  event.stopPropagation();
+                } else if (window.event) {
+                  window.event.cancelBubble = true;
+                }
+              }
+            });
 
             $('.fixed-plugin .active-color span').click(function() {
               $full_page_background = $('.full-page-background');
@@ -799,352 +840,392 @@
                 }, 300);
               }
 
-                      // we simulate the window Resize so the charts will get updated in realtime.
-                      var simulateWindowResize = setInterval(function() {
-                        window.dispatchEvent(new Event('resize'));
-                      }, 180);
+              // we simulate the window Resize so the charts will get updated in realtime.
+              var simulateWindowResize = setInterval(function() {
+                window.dispatchEvent(new Event('resize'));
+              }, 180);
 
-                      // we stop the simulation of Window Resize after the animations are completed
-                      setTimeout(function() {
-                        clearInterval(simulateWindowResize);
-                      }, 1000);
+              // we stop the simulation of Window Resize after the animations are completed
+              setTimeout(function() {
+                clearInterval(simulateWindowResize);
+              }, 1000);
 
-                    });
+            });
           });
-});
-  </script>
-  <!-- Sharrre libray -->
-  <script src="{{asset('backend/assets/demo/jquery.sharrre.js')}}"></script>
-  <script>
-    $(document).ready(function() {
+        });
+      </script>
+      <!-- Sharrre libray -->
+      <script src="{{asset('backend/assets/demo/jquery.sharrre.js')}}"></script>
+      <script>
+        $(document).ready(function() {
 
 
-      $('#facebook').sharrre({
-        share: {
-          facebook: true
-      },
-      enableHover: false,
-      enableTracking: false,
-      enableCounter: false,
-      click: function(api, options) {
-        api.simulateClick();
-        api.openPopup('facebook');
-      },
-      template: '<i class="fab fa-facebook-f"></i> Facebook',
-      url: 'https://demos.creative-tim.com/material-dashboard-pro/examples/dashboard.html'
-    });
+          $('#facebook').sharrre({
+            share: {
+              facebook: true
+            },
+            enableHover: false,
+            enableTracking: false,
+            enableCounter: false,
+            click: function(api, options) {
+              api.simulateClick();
+              api.openPopup('facebook');
+            },
+            template: '<i class="fab fa-facebook-f"></i> Facebook',
+            url: 'https://demos.creative-tim.com/material-dashboard-pro/examples/dashboard.html'
+          });
 
-    $('#google').sharrre({
-      share: {
-        googlePlus: true
-      },
-      enableCounter: false,
-      enableHover: false,
-      enableTracking: true,
-      click: function(api, options) {
-        api.simulateClick();
-        api.openPopup('googlePlus');
-      },
-      template: '<i class="fab fa-google-plus"></i> Google',
-      url: 'https://demos.creative-tim.com/material-dashboard-pro/examples/dashboard.html'
-    });
+          $('#google').sharrre({
+            share: {
+              googlePlus: true
+            },
+            enableCounter: false,
+            enableHover: false,
+            enableTracking: true,
+            click: function(api, options) {
+              api.simulateClick();
+              api.openPopup('googlePlus');
+            },
+            template: '<i class="fab fa-google-plus"></i> Google',
+            url: 'https://demos.creative-tim.com/material-dashboard-pro/examples/dashboard.html'
+          });
 
-    $('#twitter').sharrre({
-      share: {
-        twitter: true
-      },
-      enableHover: false,
-      enableTracking: false,
-      enableCounter: false,
-      buttons: {
-        twitter: {
-          via: 'CreativeTim'
-        }
-      },
-      click: function(api, options) {
-        api.simulateClick();
-        api.openPopup('twitter');
-      },
-      template: '<i class="fab fa-twitter"></i> Twitter',
-      url: 'https://demos.creative-tim.com/material-dashboard-pro/examples/dashboard.html'
-    });
+          $('#twitter').sharrre({
+            share: {
+              twitter: true
+            },
+            enableHover: false,
+            enableTracking: false,
+            enableCounter: false,
+            buttons: {
+              twitter: {
+                via: 'CreativeTim'
+              }
+            },
+            click: function(api, options) {
+              api.simulateClick();
+              api.openPopup('twitter');
+            },
+            template: '<i class="fab fa-twitter"></i> Twitter',
+            url: 'https://demos.creative-tim.com/material-dashboard-pro/examples/dashboard.html'
+          });
 
 
 
-  });
-  </script>
-  <noscript>
-    <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=111649226022273&amp;ev=PageView&amp;noscript=1" />
-  </noscript>
-  <script>
-    $(document).ready(function() {
-                    // Javascript method's body can be found in assets/js/demos.js
-                    md.initDashboardPageCharts();
+        });
+      </script>
+      <noscript>
+        <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=111649226022273&amp;ev=PageView&amp;noscript=1" />
+      </noscript>
+      <script>
+        $(document).ready(function() {
+          // Javascript method's body can be found in assets/js/demos.js
+          md.initDashboardPageCharts();
 
-                    md.initVectorMap();
+          md.initVectorMap();
 
-                  });
-                </script>
-                <script>
-                  $('.textarea_editor').wysihtml5();
-  </script>
-  <script>
-    $(document).ready(function() {
-      $('#datatables').DataTable({
-        "pagingType": "full_numbers",
-        "lengthMenu": [
-          [1, 25, 50, -1],
-          [1, 25, 50, "All"]
-        ],
-        responsive: true,
-        language: {
-          search: "_INPUT_",
-          searchPlaceholder: "Search records",
-        }
-      });
+        });
+      </script>
+      <script>
+        $('.textarea_editor').wysihtml5();
+      </script>
+      <script>
+        $(document).ready(function() {
+          $('#datatables').DataTable({
+            "pagingType": "full_numbers",
+            "lengthMenu": [
+              [1, 25, 50, -1],
+              [1, 25, 50, "All"]
+            ],
+            responsive: true,
+            language: {
+              search: "_INPUT_",
+              searchPlaceholder: "Search records",
+            }
+          });
 
-      var table = $('#datatable').DataTable();
+          var table = $('#datatable').DataTable();
 
-      // Edit record
-      table.on('click', '.edit', function() {
-        $tr = $(this).closest('tr');
-        var data = table.row($tr).data();
-        alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
-      });
+          // Edit record
+          table.on('click', '.edit', function() {
+            $tr = $(this).closest('tr');
+            var data = table.row($tr).data();
+            alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
+          });
 
-      // Delete a record
-      table.on('click', '.remove', function(e) {
-        $tr = $(this).closest('tr');
-        table.row($tr).remove().draw();
-        e.preventDefault();
-      });
+          // Delete a record
+          table.on('click', '.remove', function(e) {
+            $tr = $(this).closest('tr');
+            table.row($tr).remove().draw();
+            e.preventDefault();
+          });
 
-      //Like record
-      table.on('click', '.like', function() {
-        alert('You clicked on Like button');
-      });
-    });
-  </script>
-  {{-- ajax ship --}}
-  <script type="text/javascript">
-    $(document).ready(function(){
-        fetch_delivery();
+          //Like record
+          table.on('click', '.like', function() {
+            alert('You clicked on Like button');
+          });
+        });
+      </script>
+      {{-- ajax ship --}}
+      <script type="text/javascript">
+        $(document).ready(function() {
+          fetch_delivery();
 
-        function fetch_delivery(){
-          var _token = $('input[name="_token"]').val();
-          $.ajax({
-            url : '{{url('/manage-ship')}}',
-            method: 'POST',
-            data:{_token:_token},
-            success:function(data){
-             $('#load_delivery').html(data);
-           }
-         });
-        }
-        $(document).on('blur','.fee_ship_edit',function(){
+          function fetch_delivery() {
+            var _token = $('input[name="_token"]').val();
+            $.ajax({
+              url: '{{url(' / manage - ship ')}}',
+              method: 'POST',
+              data: {
+                _token: _token
+              },
+              success: function(data) {
+                $('#load_delivery').html(data);
+              }
+            });
+          }
+          $(document).on('blur', '.fee_ship_edit', function() {
 
             var feeship_id = $(this).data('feeship_id');
             var fee_value = $(this).text();
-             var _token = $('input[name="_token"]').val();
+            var _token = $('input[name="_token"]').val();
             $.ajax({
-                url : '{{url('/update-ship')}}',
-                method: 'POST',
-                data:{feeship_id:feeship_id, fee_value:fee_value, _token:_token},
-                success:function(data){
-                   fetch_delivery();
-                }
+              url: '{{url(' / update - ship ')}}',
+              method: 'POST',
+              data: {
+                feeship_id: feeship_id,
+                fee_value: fee_value,
+                _token: _token
+              },
+              success: function(data) {
+                fetch_delivery();
+              }
             });
 
-        });
-        $('.add_ship').click(function(){
-          var city = $('.city').val();
-          var province = $('.province').val();
-          var wards = $('.wards').val();
-          var fee_ship = $('.fee_ship').val();
-          var _token = $('input[name="_token"]').val();
-          $.ajax({
-                url : '{{url('/save-ship')}}',
-                method: 'POST',
-                data:{city:city,province:province,_token:_token,wards:wards,fee_ship:fee_ship},
-                success:function(data){
-                   fetch_delivery();
-                       
-                }
+          });
+          $('.add_ship').click(function() {
+            var city = $('.city').val();
+            var province = $('.province').val();
+            var wards = $('.wards').val();
+            var fee_ship = $('.fee_ship').val();
+            var _token = $('input[name="_token"]').val();
+            $.ajax({
+              url: '{{url(' / save - ship ')}}',
+              method: 'POST',
+              data: {
+                city: city,
+                province: province,
+                _token: _token,
+                wards: wards,
+                fee_ship: fee_ship
+              },
+              success: function(data) {
+                fetch_delivery();
+
+              }
             });
-        })
-        $('.choose').on('change',function(){
+          })
+          $('.choose').on('change', function() {
             var action = $(this).attr('id');
             var ma_id = $(this).val();
             var _token = $('input[name="_token"]').val();
             var result = '';
-            if(action=='city'){
-                result = 'province';
-            }else{
-                result = 'wards';
+            if (action == 'city') {
+              result = 'province';
+            } else {
+              result = 'wards';
             }
             $.ajax({
-                url : '{{url('/select-city')}}',
-                method: 'POST',
-                data:{action:action,ma_id:ma_id,_token:_token},
-                success:function(data){
-                   $('#'+result).html(data);     
-                }
+              url: '{{url(' / select - city ')}}',
+              method: 'POST',
+              data: {
+                action: action,
+                ma_id: ma_id,
+                _token: _token
+              },
+              success: function(data) {
+                $('#' + result).html(data);
+              }
             });
-        }); 
-    });
-  </script>
-  {{-- datepicker --}}
-  <script type="text/javascript">
-    $( function() {
-      $("#datepicker").datepicker({
-        prevText: "Tháng Trước",
-        nextText: "Tháng Sau",
-        dateFormat: "yy-mm-dd",
-        dayNamesMin: ["T2","T3","T4","T5","T6","T7","CN"],
-        duration: "slow"
-      });
-      $("#datepicker2").datepicker({
-        prevText: "Tháng Trước",
-        nextText: "Tháng Sau",
-        dateFormat: "yy-mm-dd",
-        dayNamesMin: ["T2","T3","T4","T5","T6","T7","CN"],
-        duration: "slow"
-      });
-    } );
-  </script>
-{{-- end datepicker --}}
-{{-- datepicker coupon --}}
-  <script type="text/javascript">
-    $( function() {
-      $("#startcoupon").datepicker({
-        prevText: "Tháng Trước",
-        nextText: "Tháng Sau",
-        dateFormat: "dd-mm-yy",
-        dayNamesMin: ["T2","T3","T4","T5","T6","T7","CN"],
-        duration: "slow"
-      });
-      $("#endcoupon").datepicker({
-        prevText: "Tháng Trước",
-        nextText: "Tháng Sau",
-        dateFormat: "dd-mm-yy",
-        dayNamesMin: ["T2","T3","T4","T5","T6","T7","CN"],
-        duration: "slow"
-      });
-    } );
-  </script>
-{{-- end datepicker coupon --}}
-{{-- morris chart biểu đồ Area  --}}
-  <script type="text/javascript">
-    $(document).ready(function(){
-      //   var chart = new Morris.Bar({
-      //   // ID of the element in which to draw the chart.
-      //   fillOpacity: 0.6,
-      //   hideHover: 'auto',
-      //   behaveLikeLine: true,
-      //   resize: true,
-      //   element: 'chart',
-      //   // Chart data records -- each entry in this array corresponds to a point on
-      //   // the chart.
-      //   parseTime: false,
-      //   // The name of the data record attribute that contains x-values.
-      //   xkey: 'period',
-      //   // A list of names of data record attributes that contain y-values.
-      //   ykeys: ['order','sales','profit','quantity'],
-      //   // Labels for the ykeys -- will be displayed when you hover over the
-      //   // chart.
-      //   labels: ['Đơn Hàng','Doanh Số','Lợi Nhuận','Số Lượng']
-      // });
-        chart60daysorder();
-        var chart = new Morris.Area({
-          element: 'chart',
-          lineColors: ['#ec407a','#ffa726', '#26c6da', '#FFA500'],
-          xkey: 'period',
-          ykeys: ['order','sales','quantity'],
-          labels: ['Đơn Hàng','Doanh Số','Số Lượng'],
-          fillOpacity: 0.3,
-          hideHover: 'auto',
-          parseTime: false,
-          behaveLikeLine: true,
+          });
+        });
+      </script>
+      
+      {{-- datepicker --}}
+      <script type="text/javascript">
+        $(function() {
+          $("#datepicker").datepicker({
+            prevText: "Tháng Trước",
+            nextText: "Tháng Sau",
+            dateFormat: "yy-mm-dd",
+            dayNamesMin: ["T2", "T3", "T4", "T5", "T6", "T7", "CN"],
+            duration: "slow"
+          });
+          $("#datepicker2").datepicker({
+            prevText: "Tháng Trước",
+            nextText: "Tháng Sau",
+            dateFormat: "yy-mm-dd",
+            dayNamesMin: ["T2", "T3", "T4", "T5", "T6", "T7", "CN"],
+            duration: "slow"
+          });
+        });
+      </script>
+      {{-- end datepicker --}}
+      {{-- datepicker coupon --}}
+      <script type="text/javascript">
+        $(function() {
+          $("#startcoupon").datepicker({
+            prevText: "Tháng Trước",
+            nextText: "Tháng Sau",
+            dateFormat: "dd-mm-yy",
+            dayNamesMin: ["T2", "T3", "T4", "T5", "T6", "T7", "CN"],
+            duration: "slow"
+          });
+          $("#endcoupon").datepicker({
+            prevText: "Tháng Trước",
+            nextText: "Tháng Sau",
+            dateFormat: "dd-mm-yy",
+            dayNamesMin: ["T2", "T3", "T4", "T5", "T6", "T7", "CN"],
+            duration: "slow"
+          });
+        });
+      </script>
+      {{-- end datepicker coupon --}}
+      {{-- morris chart biểu đồ Area  --}}
+      <script type="text/javascript">
+        $(document).ready(function() {
+          //   var chart = new Morris.Bar({
+          //   // ID of the element in which to draw the chart.
+          //   fillOpacity: 0.6,
+          //   hideHover: 'auto',
+          //   behaveLikeLine: true,
+          //   resize: true,
+          //   element: 'chart',
+          //   // Chart data records -- each entry in this array corresponds to a point on
+          //   // the chart.
+          //   parseTime: false,
+          //   // The name of the data record attribute that contains x-values.
+          //   xkey: 'period',
+          //   // A list of names of data record attributes that contain y-values.
+          //   ykeys: ['order','sales','profit','quantity'],
+          //   // Labels for the ykeys -- will be displayed when you hover over the
+          //   // chart.
+          //   labels: ['Đơn Hàng','Doanh Số','Lợi Nhuận','Số Lượng']
+          // });
+          chart60daysorder();
+          var chart = new Morris.Area({
+            element: 'chart',
+            lineColors: ['#ec407a', '#ffa726', '#26c6da', '#FFA500'],
+            xkey: 'period',
+            ykeys: ['order', 'sales', 'quantity'],
+            labels: ['Đơn Hàng', 'Doanh Số', 'Số Lượng'],
+            fillOpacity: 0.3,
+            hideHover: 'auto',
+            parseTime: false,
+            behaveLikeLine: true,
+            resize: true,
+            pointFillColors: ['#ffffff'],
+            pointStrokeColors: ['#ec407a'],
+          });
+
+          function chart60daysorder() {
+            var _token = $('input[name="_token"]').val();
+            $.ajax({
+              url: "{{url('/days-order')}}",
+              method: "POST",
+              dataType: "JSON",
+              data: {
+                _token: _token
+              },
+              success: function(data) {
+                chart.setData(data);
+              }
+            });
+          }
+          $('#btn-dashboard-filter').click(function() {
+            var _token = $('input[name="_token"]').val();
+            var from_data = $('#datepicker').val();
+            var to_date = $('#datepicker2').val();
+            $.ajax({
+              url: "{{url('/filter-by-date')}}",
+              method: "POST",
+              dataType: "JSON",
+              data: {
+                _token: _token,
+                from_data: from_data,
+                to_date: to_date
+              },
+              success: function(data) {
+                chart.setData(data);
+              }
+            });
+          });
+          $('.dashboard-filter').change(function() {
+            var dashboard_value = $(this).val();
+            var _token = $('input[name="_token"]').val();
+            $.ajax({
+              url: "{{url('/dashboard-filter')}}",
+              method: "POST",
+              dataType: "JSON",
+              data: {
+                dashboard_value: dashboard_value,
+                _token: _token
+              },
+              success: function(data) {
+                chart.setData(data);
+              }
+            });
+          });
+
+
+        });
+      </script>
+      {{-- end morris chart biểu đồ Area --}}
+      {{-- Morris Donut Chart --}}
+      <script type="text/javascript">
+        var colorDanger = "#FF1744";
+        Morris.Donut({
+          element: 'donut',
           resize: true,
-          pointFillColors: ['#ffffff'],
-          pointStrokeColors: ['#ec407a'],
-        });
-
-        function chart60daysorder(){
-          var _token = $('input[name="_token"]').val();
-          $.ajax({
-            url: "{{url('/days-order')}}",
-            method: "POST",
-            dataType: "JSON",
-            data:{_token:_token},
-            success:function(data)
+          colors: [
+            '#E0F7FA',
+            '#B2EBF2',
+            '#80DEEA',
+            '#4DD0E1',
+            '#26C6DA',
+            '#00BCD4'
+          ],
+          // labelColor:"#cccccc", // text color
+          // backgroundColor: '#333333', // border color
+          data: [{
+              label: "{{__('Sản Phẩm')}}",
+              value: <?php echo $product_donut ?>,
+              color: colorDanger
+            },
             {
-              chart.setData(data);
-            }
-          });
-        }
-        $('#btn-dashboard-filter').click(function(){
-          var _token = $('input[name="_token"]').val();
-          var from_data = $('#datepicker').val();
-          var to_date = $('#datepicker2').val();
-          $.ajax({
-            url: "{{url('/filter-by-date')}}",
-            method: "POST",
-            dataType: "JSON",
-            data:{_token:_token,from_data:from_data,to_date:to_date},
-            success:function(data)
+              label: "{{__('Thương Hiệu SP')}}",
+              value: <?php echo $brand_donut ?>
+            },
             {
-              chart.setData(data);
-            }
-          });
-        });
-        $('.dashboard-filter').change(function(){
-          var dashboard_value = $(this).val();
-          var _token = $('input[name="_token"]').val();
-          $.ajax({
-            url: "{{url('/dashboard-filter')}}",
-            method: "POST",
-            dataType: "JSON",
-            data:{dashboard_value:dashboard_value,_token:_token},
-            success:function(data)
+              label: "{{__('Danh Mục SP')}}",
+              value: <?php echo $category_donut  ?>
+            },
             {
-              chart.setData(data);
+              label: "{{__('Đơn Hàng')}}",
+              value: <?php echo $order_donut ?>
+            },
+            {
+              label: "{{__('Khách Hàng')}}",
+              value: <?php echo $customer_donut ?>
+            },
+            {
+              label: "{{__('Bài Viết')}}",
+              value: <?php echo  $post_donut ?>
             }
-          });
+          ]
         });
-
-
-    });
-  </script>
-{{-- end morris chart biểu đồ Area --}}
-{{-- Morris Donut Chart --}}
-  <script type="text/javascript">
-    var colorDanger = "#FF1744";
-      Morris.Donut({
-        element: 'donut',
-        resize: true,
-        colors: [
-          '#E0F7FA',
-          '#B2EBF2',
-          '#80DEEA',
-          '#4DD0E1',
-          '#26C6DA',
-          '#00BCD4'
-        ],
-        // labelColor:"#cccccc", // text color
-        // backgroundColor: '#333333', // border color
-        data: [
-          {label:"{{__('Sản Phẩm')}}", value:<?php echo $product_donut ?>, color:colorDanger},
-          {label:"{{__('Thương Hiệu SP')}}", value:<?php echo $brand_donut ?>},
-          {label:"{{__('Danh Mục SP')}}", value:<?php echo $category_donut  ?>},
-          {label:"{{__('Đơn Hàng')}}", value:<?php echo $order_donut ?>},
-          {label:"{{__('Khách Hàng')}}", value:<?php echo $customer_donut ?>},
-          {label:"{{__('Bài Viết')}}", value:<?php echo  $post_donut ?>}
-        ]  
-      });
-
-  </script>
-{{-- End Morris Donut Chart --}}
- </body>
+      </script>
+      {{-- End Morris Donut Chart --}}
+</body>
 
 </html>

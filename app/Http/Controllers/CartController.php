@@ -9,9 +9,9 @@ use App\Http\Requests\ShipRequests;
 use App\Imports\ExcelImportsCoupon;
 use App\Exports\ExcelExportsCoupon;
 use Excel;
-use DB;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests;
-use Session;
+use Illuminate\Support\Facades\Session;
 use Illuminate\support\Facades\Redirect;
 use App\Models\Coupon;
 use Cart;
@@ -20,7 +20,7 @@ use App\Models\City;
 use App\Models\Province;
 use App\Models\Wards;
 use App\Models\Feeship;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 session_start();
 class CartController extends Controller
 {
@@ -235,7 +235,7 @@ public function add_cart_ajax(Request $request){
         $all_coupon = Coupon::orderBy('coupon_id','DESC')->paginate(5);
         $month= Carbon::now('Asia/Ho_Chi_Minh')->month;
         $year = Carbon::now('Asia/Ho_Chi_Minh')->year;
-        $today = Carbon::now('Asia/Ho_Chi_Minh')->format('d-m-Y');
+        $today = Carbon::now('Asia/Ho_Chi_Minh')->day;
         return view('admin.Coupon.all_coupon')->with(compact('all_coupon','today','month','year'));
     }
 

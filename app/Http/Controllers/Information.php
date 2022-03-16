@@ -10,7 +10,7 @@ use Session;
 use App\Models\Contact;
 use Illuminate\support\Facades\Redirect;
 use Illuminate\Foundation\Http\FormRequest;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class Information extends Controller
 {   public function AuthenLogin(){

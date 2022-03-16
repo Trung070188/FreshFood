@@ -3,12 +3,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use DB;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests;
-use Session;
+use Illuminate\Support\Facades\Session;
 use Illuminate\support\Facades\Redirect;
 use Cart;
-use Mail;
+use Illuminate\Support\Facades\Mail;
 use Carbon\Carbon;
 use App\Models\City;
 use App\Models\Province;

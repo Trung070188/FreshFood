@@ -77,7 +77,7 @@
             </a>
           </li>
           <li class="nav-item  active ">
-            <a href="{{URL::to('/login-auth')}}" class="nav-link">
+            <a href="{{URL::to('/admin')}}" class="nav-link">
               <i class="material-icons">fingerprint</i> Login Auth
             </a>
           </li>

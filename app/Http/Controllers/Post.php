@@ -6,14 +6,14 @@ use Illuminate\Http\Request;
 use DB;
 use App\Http\Requests\PostRequests;
 use App\Http\Requests;
-use Session;
+use Illuminate\Support\Facades\Session;
 use Illuminate\support\Facades\Redirect;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Models\Posts;
 use App\Models\Cateblog;
 use App\Models\Brand;
 use App\Models\Category;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class Post extends Controller
 {
